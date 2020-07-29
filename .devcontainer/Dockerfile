@@ -20,5 +20,4 @@ RUN apt-get update \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-RUN chmod 777 .devcontainer/make_requirements.sh && .devcontainer/make_requirements.sh && 
 EXPOSE 8888
