@@ -45,4 +45,4 @@ RUN apt-get update \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-
+EXPOSE 8888
