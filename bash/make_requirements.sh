@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Building requirements.txt"
 
 echo "# local package" >> ../requirements.txt
 echo "-e ." >> ../requirements.txt

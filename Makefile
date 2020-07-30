@@ -14,10 +14,19 @@ PYTHON_INTERPRETER = python3
 # COMMANDS                                                                      #
 #################################################################################
 
+jupyter:
+	jupyter lab --port=8888 --no-browser --ip=0.0.0.0 --allow-root
+
 ## Install Python Dependencies
-requirements: test_environment
+requirements:
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
+
+build_requirements:
+	bash/make_requirements.sh
+
+make_terminal_flair:
+	bash/set_dotfiles.sh
 
 ## Delete all compiled Python files
 clean: black
