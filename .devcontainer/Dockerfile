@@ -18,8 +18,8 @@ RUN apt-get update \
     ## pip installs
     && /opt/conda/bin/pip install \
         pylint \
-        boto \
-        python-dotenv
+        boto3 \
+        dotenv \
     #
     # Clean up
     && apt-get autoremove -y \

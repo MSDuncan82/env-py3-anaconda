@@ -14,7 +14,7 @@ PYTHON_INTERPRETER = python3
 # COMMANDS                                                                      #
 #################################################################################
 
-jupyter:
+jupyter: requirements
 	jupyter lab --port=8888 --no-browser --ip=0.0.0.0 --allow-root
 
 ## Install Python Dependencies
