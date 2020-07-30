@@ -14,12 +14,13 @@ RUN apt-get update \
         iproute2 \
         lsb-release \
         build-essential \
+        bash-completion \
     #
     ## pip installs
     && /opt/conda/bin/pip install \
         pylint \
         boto3 \
-        dotenv \
+        python-dotenv \
     #
     # Clean up
     && apt-get autoremove -y \

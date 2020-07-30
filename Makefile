@@ -25,7 +25,7 @@ requirements:
 build_requirements:
 	bash/make_requirements.sh
 
-terminal_flair:
+term:
 	bash/set_dotfiles.sh
 
 ## Delete all compiled Python files
