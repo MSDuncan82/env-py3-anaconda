@@ -22,7 +22,7 @@
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [8888],
+	"forwardPorts": [8888, 5432],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommands": "for file in $(ls /workspaces/env-py3-anaconda/bash); do chmod 777 $file; done"

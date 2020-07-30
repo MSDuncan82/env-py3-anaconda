@@ -2,7 +2,6 @@ import os
 import dotenv
 from sqlalchemy import create_engine
 
-
 def create_engine_to_rds(db_name, echo=True):
     """Connect to RDS database instance described by environment variables in .env"""
 
@@ -21,4 +20,4 @@ def create_engine_to_rds(db_name, echo=True):
 
 if __name__ == "__main__":
 
-    engine = create_engine_to_rds("census_data")
+    engine = create_engine_to_rds("db_name")

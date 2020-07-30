@@ -6,7 +6,7 @@
 
 # PROJECT_NAME = {{ project name }}
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-# BUCKET = {{ bucket name }}
+BUCKET = seattle-911-calls # {{ bucket name }}
 PROFILE = default
 PYTHON_INTERPRETER = python3
 
@@ -40,9 +40,9 @@ black:
 ## Upload Data to S3
 sync_data_to_s3:
 ifeq (default,$(PROFILE))
-	aws s3 sync data/ s3://$(BUCKET)/data/
+	aws s3 sync data/raw s3://$(BUCKET)/
 else
-	aws s3 sync data/ s3://$(BUCKET)/data/ --profile $(PROFILE)
+	aws s3 sync data/raw s3://$(BUCKET)/ --profile $(PROFILE)
 endif
 
 ## Download Data from S3

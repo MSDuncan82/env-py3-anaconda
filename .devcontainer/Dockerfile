@@ -29,5 +29,9 @@ RUN apt-get update \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "~/awscliv2.zip" \
+    && unzip "~/awscli2.zip" && sudo "~/aws/install"
+
 EXPOSE 8888
+EXPOSE 5432
 
