@@ -21,6 +21,8 @@ RUN apt-get update \
         pylint \
         boto3 \
         python-dotenv \
+        ipdb \
+        black \
     #
     # Clean up
     && apt-get autoremove -y \
