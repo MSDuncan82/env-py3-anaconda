@@ -15,6 +15,10 @@ RUN apt-get update \
         lsb-release \
         build-essential \
         bash-completion \
+        unzip \
+        python3-dev \
+        libpq-dev \
+        telnet \
     #
     ## pip installs
     && /opt/conda/bin/pip install \
@@ -23,14 +27,13 @@ RUN apt-get update \
         python-dotenv \
         ipdb \
         black \
+        psycopg2 \
+        
     #
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
-
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "~/awscliv2.zip" \
-    && unzip "~/awscli2.zip" && sudo "~/aws/install"
 
 EXPOSE 8888
 EXPOSE 5432
