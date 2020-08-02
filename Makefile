@@ -26,6 +26,11 @@ jupyter: requirements
 build_requirements:
 	bash/make_requirements.sh
 
+setup: term aws ipython
+
+ipython:
+	mv .ipython ~/.
+
 term:
 	bash/set_dotfiles.sh
 
