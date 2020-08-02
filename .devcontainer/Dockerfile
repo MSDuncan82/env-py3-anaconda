@@ -28,6 +28,8 @@ RUN apt-get update \
         ipdb \
         black \
         psycopg2 \
+        catboost \
+        xgboost \
         
     #
     # Clean up
