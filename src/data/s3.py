@@ -4,24 +4,48 @@ import os
 import shutil
 import uuid
 
-
 class S3Exec:
     """
-    A class to initiate a connection to AWS and perform S3 bucket operations
+    A class to initiate a connection to AWS and perform S3 bucket operations.
+    By default uses environment variables to automatically find credentials.
+    Use `find_creds=False` and use **kwargs to pass to boto3.session.Session
 
     Main use is to download a file from an S3 bucket using the 
-    `download_file_match(file_str).` Class can also create, delete, and list
-    buckets and files.
+    `download_file_match(file_str, file_output).` Class can also create, 
+    delete, and list buckets and files. This method looks for files in all
+    available buckets.
     
     Attributes
     ----------
-    session : boto3 session 
-        attribute description
+    session : boto3.session.Session
+        A session stores configuration state and allows you to create service
+        clients and resources
+
+    s3_client : botocore.client.S3
+        Client class used for low level operations with S3
+
+    s3_resource : s3.ServiceResource
+        For higher level operations with S3 than client
     
     Methods
     ---------
-    method(*args, **kwargs)
-        method description
+    search_files(self, file_str):
+        Search all files in all buckets and return matches in a dict {'bucket name': 'file key'}
+
+    download_file_match(self, file_str, file_outpath, overwrite=False):
+        Search all files in all buckets and download matching file using `file_str`
+
+    download_file(self, file_outpath, bucket, file, overwrite=False):
+        Download a specific file with input bucket object & file object
+
+    list_buckets(self):
+        Return list of s3 buckets
+
+    create_bucket(self, bucket_prefix, s3_connection, versioning=True):
+        Create bucket with unique name
+
+    delete_all_objects(self, bucket):
+        Delete all objects in a bucket
     """
     
 
@@ -49,7 +73,7 @@ class S3Exec:
         creds['aws_secret_access_key'] = os.environ['AWSSecretKey']
         return creds
 
-    def search_files(self, file_str, ):
+    def search_files(self, file_str):
         """
         Search all files in all buckets and return matches in a dict {'bucket name': 'file key'}
         """
@@ -110,14 +134,14 @@ class S3Exec:
 
         return list(self.s3_resource.buckets.all())
 
-    def list_files(self, bucket):
+    def list_files(self, bucket_name):
         """
         Return list of file objects in a given s3 bucket
         """
         try:
-            return list(self.s3_resource.Bucket(bucket).objects.all())
+            return list(self.s3_resource.Bucket(bucket_name).objects.all())
         except Exception as e:
-            print(f'Caught exception {e} for {bucket}')
+            print(f'Caught exception {e} for {bucket_name}')
 
     def create_bucket_name(self, bucket_prefix):
         """
@@ -165,14 +189,10 @@ class S3Exec:
         random_file_name = self.generate_random_filename(filename)
         os.rename(filepath, f"{filedir}/{random_file_name}.csv")
 
-    def delete_object(self, bucket, file):
-        """
-        Delete a file in a given bucket by substring
-        """
-        pass
-
     def delete_all_objects(self, bucket):
-        """Delete all objects in bucket"""
+        """
+        Delete all objects in bucket
+        """
 
         res = []
         for obj_version in bucket.object_versions.all():
