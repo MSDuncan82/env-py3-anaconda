@@ -20,7 +20,10 @@
 		"eamodio.gitlens",
 		"gruntfuggly.todo-tree"
 	],
-
+	"containerEnv": {
+		"AWSAccessKeyID": "${localEnv:AWSAccessKeyID",
+		"AWSSecretKey": "${localEnv:AWSSecretKey}"
+	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [8888, 5432],
 
