@@ -7,14 +7,15 @@ import uuid
 
 class S3Exec:
     """
-    TODO Write class docs
-    short description of class
-    
-    longer description of class if necessary
+    A class to initiate a connection to AWS and perform S3 bucket operations
+
+    Main use is to download a file from an S3 bucket using the 
+    `download_file_match(file_str).` Class can also create, delete, and list
+    buckets and files.
     
     Attributes
     ----------
-    attribute : type
+    session : boto3 session 
         attribute description
     
     Methods
