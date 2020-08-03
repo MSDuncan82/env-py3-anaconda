@@ -21,7 +21,11 @@
 		"gruntfuggly.todo-tree"
 	],
 	"containerEnv": {
-		"AWSAccessKeyID": "${localEnv:AWSAccessKeyID",
+		"AWSAccessKeyID": "${localEnv:AWSAccessKeyID}",
+		"AWSSecretKey": "${localEnv:AWSSecretKey}"
+	},
+	"remoteEnv": {
+		"AWSAccessKeyID": "${localEnv:AWSAccessKeyID}",
 		"AWSSecretKey": "${localEnv:AWSSecretKey}"
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
