@@ -14,7 +14,7 @@ def create_engine_to_rds(db_name, echo=True, db_params=None):
     
     db_params['drivername'] = db_params.get('drivername', os.getenv('RDS_DRIVER', 'postgres'))
     db_params['username'] = db_params.get('username', os.getenv('RDS_USER', 'postgres'))
-    db_params['password'] = db_params.get('password', os.getenv('RDS_PASS', 'password'))
+    db_params['password'] = db_params.get('password', os.getenv('RDS_PASS', ''))
     db_params['host'] = db_params.get('host', os.getenv('RDS_HOST', '0.0.0.0'))
     db_params['port'] = db_params.get('port', os.getenv('RDS_PORT', 5432))
 

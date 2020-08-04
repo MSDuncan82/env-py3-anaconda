@@ -13,7 +13,6 @@ import pandas as pd
 
 class SqlExec:
     """
-    TODO update docs
     Interface to interact with SQL database
     
     Use SqlAlchemy to interact with SQL databases. The SqlExec needs to connect
@@ -38,6 +37,9 @@ class SqlExec:
     ---------
     __init__(self, db='census_data')
         Initialize object with connection to database `db`
+
+    get_df(self, table=None, columns=None, **kwargs):
+        Wrapper around pd.read_sql to return dataframe
     
     add(self, obj, name=None, if_exists='append')
         Add data to a table in the database. 
@@ -81,6 +83,15 @@ class SqlExec:
     def inspector(self):
         return inspect(self.engine)
 
+    def get_df(self, table=None, columns=None, **kwargs):
+        """
+        Wrapper around pd.read_sql to return dataframe
+        """
+
+        with self.engine.connect() as con:
+            df = pd.read_sql(sql=table, con=con, columns=columns, **kwargs)
+
+        return df 
 
     def add(self, obj, name=None, if_exists="append", index=False):
         """
@@ -128,17 +139,6 @@ class SqlExec:
         table_class = type(class_name, (self.Base,), attr_dict)
 
         return table_class
-
-    def get_df(self, table=None, columns=None, **kwargs):
-        """
-        Wrapper around pd.read_sql to return dataframe
-        """
-
-        with self.engine.connect() as con:
-            df = pd.read_sql(sql=table, con=con, columns=columns, **kwargs)
-
-        return df 
-
 
 if __name__ == "__main__":
 
