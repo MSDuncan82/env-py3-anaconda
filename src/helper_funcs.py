@@ -21,7 +21,7 @@ def flatten_list_of_lists(list_of_lists: list, remove_non_lists: bool=True) -> l
 
 def dict_from_list(lst: list, value: any) -> dict:
     """
-    Create a dictionary with keys from a `lst` and values of `value`
+    Create a dictionary with keys from a `lst` and all values equal to `value`
     """
 
     return {key:value for key in lst}

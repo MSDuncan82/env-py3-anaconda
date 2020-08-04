@@ -1,4 +1,4 @@
-.PHONY: clean data requirements sync_data_to_s3 sync_data_from_s3
+.PHONY: clean black sync_data_to_s3 sync_data_from_s3 jupyter install_requirements
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -15,15 +15,15 @@ PYTHON_INTERPRETER = python3
 #################################################################################
 
 ## Install Python Dependencies
-requirements:
+install_requirements:
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
 ## Set up Dev Container
-jupyter: requirements
+jupyter: install_requirements
 	jupyter lab --port=8888 --no-browser --ip=0.0.0.0 --allow-root
 
-build_requirements:
+requirements:
 	bash/make_requirements.sh
 
 setup: term aws ipython
