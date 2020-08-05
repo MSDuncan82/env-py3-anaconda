@@ -55,11 +55,13 @@ def convert_dtypes(
     Arguments
     ----------
     str_cols : list
-        column names to conver to str
+        column names to convert to str
     int_cols : list
-        column names to conver to int
+        column names to convert to int
     float_cols : list
-        column names to conver to float
+        column names to convert to float
+    cat_cols : list
+        column names to convert to pd.category
     dt_cols : dict
         datetime columns and format for datetime parsing
     
@@ -84,8 +86,9 @@ def convert_dtypes(
 
     df_typed = df_typed.astype({**str_dict, **int_dict, **float_dict, **cat_dict})
 
-    for col, form in dt_cols.items():
-        df_typed[col] = pd.to_datetime(df_typed[col], format=form)
+    if dt_cols:
+        for col, form in dt_cols.items():
+            df_typed[col] = pd.to_datetime(df_typed[col], format=form)
 
     return df_typed
 
