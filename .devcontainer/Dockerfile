@@ -30,6 +30,9 @@ RUN apt-get update \
         psycopg2 \
         catboost \
         xgboost \
+        fastapi \
+        unicorn \
+        nb_black \
         
     #
     # Clean up
