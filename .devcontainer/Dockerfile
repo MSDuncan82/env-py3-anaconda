@@ -31,9 +31,8 @@ RUN apt-get update \
         catboost \
         xgboost \
         fastapi \
-        unicorn \
+        uvicorn \
         nb_black \
-        
     #
     # Clean up
     && apt-get autoremove -y \
